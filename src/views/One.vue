@@ -37,6 +37,8 @@
         li Sinon si le le nombre de lettre dans le nom de la société est impair, afficher le nom de la société en bleu
     p Réponse:
     //- Affichage réponse Exo 1.3 ici
+    ul
+      li(v-for="company in companies" :class="getCSSClass(company.title)") {{company.title}}
 </template>
 
 <script lang="ts">
@@ -61,10 +63,25 @@ export default Vue.extend({
       Vue.axios.get('http://localhost:3000/api/companies').then((response) => {
         this.companies = response.data[0].companies
       })
+    },
+
+    getCSSClass (companyName: string) {
+      if (companyName.charAt(0).toUpperCase() === 'S') { return 'yellow' }
+      if (companyName.length % 2 === 0) { return 'red' }
+      return 'blue'
     }
   }
 })
 </script>
 
 <style lang="scss">
+.yellow{
+  color: yellow;
+}
+.red{
+  color: red;
+}
+.blue{
+  color: blue;
+}
 </style>
