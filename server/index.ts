@@ -1,12 +1,14 @@
 import express from 'express'
 import fs from 'fs'
 import yaml from 'js-yaml'
+import cors from 'cors'
 
 // import socketIO from "socket.io";
 
 export default (app, http) => {
   console.log('yes')
   app.use(express.json())
+  app.use(cors())
   app.get('/api/companies', (req, res) => {
     try {
       const fileContents = fs.readFileSync('server/companies.yml', 'utf8')
@@ -18,7 +20,7 @@ export default (app, http) => {
     }
   })
   // optional support for socket.io
-  // 
+  //
   // let io = socketIO(http);
   // io.on("connection", client => {
   //   client.on("message", function(data) {
