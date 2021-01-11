@@ -6,6 +6,11 @@
     h2 Exo 1.1 : Afficher du texte
     p Afficher une suite de chiffres de 1 à 100
     p Réponse:
+    - let n = 1;
+    ul
+      while n < 101
+        li= n++
+
     //- Affichage réponse Exo 1.1 ici %>
     h2 Exo 1.2 : lister les sociétés
     p Ici, lister toutes les sociétés inclues dans la base de données:
