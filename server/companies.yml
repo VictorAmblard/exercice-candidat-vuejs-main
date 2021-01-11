@@ -1,0 +1,21 @@
+companies:
+  - title: Facebook
+    code: FB
+  - title: Snapchat
+    code: SNAP
+  - title: Microsoft
+    code: MSFT
+  - title: Apple
+    code: AAPL
+  - title: Tesla
+    code: TSLA
+  - title: Alphabet
+    code: GOOGL
+  - title: Amazon
+    code: AMZN
+  - title: Uber
+    code: UBER
+  - title: Netflix
+    code: NFLX
+  - title: Airbnb
+    code: ABNB
