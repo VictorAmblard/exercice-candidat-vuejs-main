@@ -1,8 +1,9 @@
 <template lang='pug'>
 div
   button(@click="newGrid") New game
+  button(@click="help") Help
   Grid(:grid="grid")
-  Score(:score="score")
+  Score(:score="score" :defeat="defeat")
 </template>
 
 <script lang="ts">
@@ -17,10 +18,10 @@ export default Vue.extend({
     Score
   },
   computed: {
-    ...mapState(['grid', 'score'])
+    ...mapState(['grid', 'score', 'defeat'])
   },
   methods: {
-    ...mapActions(['newGrid'])
+    ...mapActions(['newGrid', 'help'])
   }
 })
 </script>

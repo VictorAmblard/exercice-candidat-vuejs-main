@@ -82,7 +82,8 @@ export default new Vuex.Store({
     listCompanyB: [],
     grid: Array<Array<Cell>>(),
     score: 0,
-    defeat: false
+    defeat: false,
+    helper: false
   },
   mutations: {
     setListCompanyA (state, companies) {
@@ -98,6 +99,7 @@ export default new Vuex.Store({
       state.grid = grid
       state.defeat = false
       state.score = 0
+      state.helper = false
     },
     discoverCell (state, id) {
       const coord: Array<number> = findIndices(state.grid, id)
@@ -106,6 +108,9 @@ export default new Vuex.Store({
         if (state.grid[coord[0]][coord[1]].value === 0) { state.defeat = true }
         if (state.defeat === false) { state.score += state.grid[coord[0]][coord[1]].value }
       }
+    },
+    helperActive (state) {
+      state.helper = true
     }
   },
   actions: {
@@ -117,6 +122,9 @@ export default new Vuex.Store({
     },
     clickCell (context, id) {
       context.commit('discoverCell', id)
+    },
+    help (context) {
+      context.commit('helperActive')
     }
   },
   modules: {

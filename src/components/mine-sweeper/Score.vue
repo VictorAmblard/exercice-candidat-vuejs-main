@@ -1,6 +1,7 @@
 <template lang='pug'>
 div
   p Score : {{ score }}
+  p(v-if="defeat" classe="defeat") Defeat
 </template>
 
 <script lang="ts">
@@ -10,10 +11,16 @@ export default Vue.extend({
   props: {
     score: {
       type: Number
+    },
+    defeat: {
+      type: Boolean
     }
   }
 })
 </script>
 
 <style lang="scss">
+.defeat{
+  color: red;
+}
 </style>
