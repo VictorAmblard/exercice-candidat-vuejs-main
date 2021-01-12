@@ -1,1 +1,10 @@
-Pour ce projet j'ai fais le choix d'aller au plus simple pour avoir un rendu qui fonctionne en temps et en heure.
+Pour ce projet j'ai fait le choix d'aller au plus simple pour avoir un rendu qui fonctionne en temps et en heure.
+Je me rends compte qu'il aurait été plus judicieux de ma part de créer un système de classe qui m'aurait évité des lignes de code.
+J'ai créé toutes les fonctions dont j'avais besoin dans le fichier store/index.ts. La majeure partie du moteur du jeu se situe à l'intérieur.
+
+Pour les premiers exercices j'ai eu des soucis d'autorisation du coup j’ai rajouté le paquet cors au serveur.
+
+Pour la troisième partie j’ai ajouté une rubrique Mine Sweeper au menu avec une view.
+Le score ne s’incrémente plus à partir du moment où le joueur est tombé sur une bombe.
+
+Pour le 3.2 j’ai ajouté un bouton Help qui permet au d’aafichier en jaune les cases avec un score de 3.
