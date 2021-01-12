@@ -10,13 +10,16 @@
     p Réponse:
     //- Affichage réponse Exo 2.1 ici
     div(class='lists')
-      ListItem(title='Liste A' :items="companies")
+      ListItem(title='Liste A' :items="companiesA")
       ListItem(title='Liste B')
     h2 Exo 2.2 : Interaction entre les deux listes
     p Ajouter un bouton écrire l'interaction suivante: Quand l'utilisateur clique sur le bouton, le dernier élément de la liste A disparait de celle-ci, et est rajouté dans la liste B.
     p Réponse:
     //- Affichage réponse Exo 2.2 ici
-
+    div(class='lists')
+      ListItem(title='Liste A' :items="companiesA")
+      ListItem(title='Liste B' :items="companiesB")
+    button(@click='moveCompany') Move
     h2 Exo 2.3 : Utilisation de VueX
     p Si l'utilisation de VueX n'a pas été effectuée dans les exercices précédents, il faut que l'état des deux listes A et B soit enregistré dans le store VueX.
     p VueX est initialisé ici @/src/store/index.ts
@@ -35,7 +38,8 @@ export default Vue.extend({
   },
   data () {
     return {
-      companies: null
+      companiesA: [],
+      companiesB: []
     }
   },
   mounted () {
@@ -44,8 +48,15 @@ export default Vue.extend({
   methods: {
     getCompanies () {
       Vue.axios.get('http://localhost:3000/api/companies').then((response) => {
-        this.companies = response.data[0].companies
+        this.companiesA = response.data[0].companies
       })
+    },
+    moveCompany () {
+      const nbCompanies: number = this.companiesA.length
+      if (nbCompanies > 0) {
+        this.companiesB.push(this.companiesA[nbCompanies - 1])
+        this.companiesA.pop()
+      }
     }
   }
 })
