@@ -1,12 +1,17 @@
 <template lang='pug'>
 div
-  h2 Find me in @/src/components/mine-sweeper/Score.vue
+  p Score : {{ score }}
 </template>
 
 <script lang="ts">
 import Vue from 'vue'
 export default Vue.extend({
-  name: 'Score'
+  name: 'Score',
+  props: {
+    score: {
+      type: Number
+    }
+  }
 })
 </script>
 

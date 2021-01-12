@@ -11,6 +11,8 @@
             router-link.nav-link(to="/two") Exo2
           li.nav-item
             router-link.nav-link(to="/three") Exo3
+          li.nav-item
+            router-link.nav-link(to="/minesweeper") Mine Sweeper
 
       router-view
 </template>
