@@ -10,15 +10,15 @@
     p Réponse:
     //- Affichage réponse Exo 2.1 ici
     div(class='lists')
-      ListItem(title='Liste A' :items="companiesA")
+      ListItem(title='Liste A' :items="listCompanyA")
       ListItem(title='Liste B')
     h2 Exo 2.2 : Interaction entre les deux listes
     p Ajouter un bouton écrire l'interaction suivante: Quand l'utilisateur clique sur le bouton, le dernier élément de la liste A disparait de celle-ci, et est rajouté dans la liste B.
     p Réponse:
     //- Affichage réponse Exo 2.2 ici
     div(class='lists')
-      ListItem(title='Liste A' :items="companiesA")
-      ListItem(title='Liste B' :items="companiesB")
+      ListItem(title='Liste A' :items="listCompanyA")
+      ListItem(title='Liste B' :items="listCompanyB")
     button(@click='moveCompany') Move
     h2 Exo 2.3 : Utilisation de VueX
     p Si l'utilisation de VueX n'a pas été effectuée dans les exercices précédents, il faut que l'état des deux listes A et B soit enregistré dans le store VueX.
@@ -29,6 +29,7 @@
 import Vue from 'vue'
 import ExoDisclaimer from '../components/ExoDisclaimer.vue'
 import ListItem from '../components/ListItem.vue'
+import { mapState, mapActions } from 'vuex'
 
 export default Vue.extend({
   name: 'App',
@@ -36,11 +37,8 @@ export default Vue.extend({
     ExoDisclaimer,
     ListItem
   },
-  data () {
-    return {
-      companiesA: [],
-      companiesB: []
-    }
+  computed: {
+    ...mapState(['companies', 'listCompanyA', 'listCompanyB'])
   },
   mounted () {
     this.getCompanies()
@@ -48,16 +46,10 @@ export default Vue.extend({
   methods: {
     getCompanies () {
       Vue.axios.get('http://localhost:3000/api/companies').then((response) => {
-        this.companiesA = response.data[0].companies
+        this.$store.commit('setListCompanyA', response.data[0].companies)
       })
     },
-    moveCompany () {
-      const nbCompanies: number = this.companiesA.length
-      if (nbCompanies > 0) {
-        this.companiesB.push(this.companiesA[nbCompanies - 1])
-        this.companiesA.pop()
-      }
-    }
+    ...mapActions(['moveCompany'])
   }
 })
 </script>
