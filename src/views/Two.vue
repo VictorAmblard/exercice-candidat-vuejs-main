@@ -9,7 +9,9 @@
     p La liste A représente toutes les sociétés de la base de données. La liste B représente pour l'instant une liste vide.
     p Réponse:
     //- Affichage réponse Exo 2.1 ici
-
+    div(class='lists')
+      ListItem(title='Liste A' :items="companies")
+      ListItem(title='Liste B')
     h2 Exo 2.2 : Interaction entre les deux listes
     p Ajouter un bouton écrire l'interaction suivante: Quand l'utilisateur clique sur le bouton, le dernier élément de la liste A disparait de celle-ci, et est rajouté dans la liste B.
     p Réponse:
@@ -23,14 +25,34 @@
 <script lang="ts">
 import Vue from 'vue'
 import ExoDisclaimer from '../components/ExoDisclaimer.vue'
+import ListItem from '../components/ListItem.vue'
 
 export default Vue.extend({
   name: 'App',
   components: {
-    ExoDisclaimer
+    ExoDisclaimer,
+    ListItem
+  },
+  data () {
+    return {
+      companies: null
+    }
+  },
+  mounted () {
+    this.getCompanies()
+  },
+  methods: {
+    getCompanies () {
+      Vue.axios.get('http://localhost:3000/api/companies').then((response) => {
+        this.companies = response.data[0].companies
+      })
+    }
   }
 })
 </script>
 
 <style lang="scss">
+.lists{
+  display: flex;
+}
 </style>
